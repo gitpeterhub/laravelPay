@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//---------------------------
+// route for view/blade file
+//---------------------------
+Route::get('paywithpaypal','PaymentController@addPayment')->name('paywithpaypal');
+
+//-------------------------
+// route for post request
+//-------------------------
+Route::post('paypal', 'PaymentController@postPaymentWithpaypal')->name('paypal');
+
+//---------------------------------
+// route for check status responce
+//---------------------------------
+Route::get('paypal','PaymentController@getPaymentStatus')->name('status');
