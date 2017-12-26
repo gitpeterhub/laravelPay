@@ -17,7 +17,7 @@
                 @endif
                 @if ($message = Session::get('error'))
                 <div class="custom-alerts alert alert-danger fade in">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
                     {!! $message !!}
                 </div>
                 <?php Session::forget('error');?>

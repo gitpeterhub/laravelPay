@@ -18,7 +18,7 @@ Route::get('/', function () {
 //---------------------------
 // route for view/blade file
 //---------------------------
-Route::get('addPayment','PaymentController@addPayment')->name('addPayment');
+Route::get('paywithpaypal','PaymentController@addPayment')->name('paywithpaypal');
 
 //-------------------------
 // route for post request

@@ -111,6 +111,12 @@ class PaymentController extends Controller
         //--------------------------
         Session::put('paypal_payment_id', $payment->getId());
 
+
+        //--------------------------
+        // add payment amount to session
+        //--------------------------
+        //Session::put('paypal_paid_amount', $payment->getAmount());
+
         if(isset($redirect_url)) 
         {
             //-------------------
@@ -123,7 +129,7 @@ class PaymentController extends Controller
     	return Redirect::route('paywithpaypal');
     }
 
-    public function getPaymentStatus()
+    public function getPaymentStatus(Request $request)
     {
         //----------------------------------------
         // Get the payment ID before session clear
@@ -134,7 +140,7 @@ class PaymentController extends Controller
         // clear the session payment ID
         //-----------------------------
         Session::forget('paypal_payment_id');
-        if (empty(Input::get('PayerID')) || empty(Input::get('token'))) 
+        if (empty($request->get('PayerID')) || empty($request->get('token'))) 
         {
             \Session::put('error','Payment failed');
             return Redirect::route('paywithpaypal');
@@ -142,7 +148,7 @@ class PaymentController extends Controller
         $payment = Payment::get($payment_id, $this->_api_context);
 
         $execution = new PaymentExecution();
-        $execution->setPayerId(Input::get('PayerID'));
+        $execution->setPayerId($request->get('PayerID'));
 
         //---Execute the payment ---//
         $result = $payment->execute($execution, $this->_api_context);
