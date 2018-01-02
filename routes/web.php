@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 //---------------------------
-// route for view/blade file
+// route for view/blade file for paypal
 //---------------------------
 Route::get('paywithpaypal','PaymentController@addPayment')->name('paywithpaypal');
 
@@ -29,3 +29,16 @@ Route::post('paypal', 'PaymentController@postPaymentWithpaypal')->name('paypal')
 // route for check status responce
 //---------------------------------
 Route::get('paypal','PaymentController@getPaymentStatus')->name('status');
+
+//-----------------------------
+// route for view/blade file for strip payment
+//-----------------------------------
+Route::get('paywithstripe','PaymentController@stripePayment')->name('paywithstripe');
+
+//-------------------------
+// route for post request
+//-------------------------
+Route::post('stripe', 'PaymentController@postPaymentWithStrip')->name('stripe');
+
+//---------------------------------
+// route for check status responce
