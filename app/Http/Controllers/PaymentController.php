@@ -166,4 +166,20 @@ class PaymentController extends Controller
 
 		return Redirect::route('paywithpaypal');
     }
+
+
+    //------------------------------------------------------
+    public function stripePayment(){
+
+        return view("stripe-payment");
+
+    }
+
+
+    public function postPaymentWithStrip(Request $req){
+
+
+    }
+
+
 }
